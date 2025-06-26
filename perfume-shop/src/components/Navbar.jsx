@@ -6,8 +6,6 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const isAdmin = user?.role === "admin";
-
   const NavLink = ({ to, children, onClick }) => (
     <Link
       to={to}
@@ -41,19 +39,18 @@ const Navbar = () => {
             <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
               <span className="text-white text-sm font-bold">P</span>
             </div>
-            <span className="relative">
+            <span className="relative text-white">
               PerfumeShop
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-40 transition-opacity duration-300"></div>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-15 group-hover:opacity-25 transition-opacity duration-300"></div>
             </span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             <NavLink to="/">Home</NavLink>
+            <NavLink to="/cart">Cart</NavLink>
 
-            {!isAdmin && <NavLink to="/cart">Cart</NavLink>}
-
-            {!user && (
+            {!user ? (
               <>
                 <NavLink to="/login">Login</NavLink>
                 <div className="relative overflow-hidden bg-gradient-to-r from-purple-600 to-pink-600 rounded-full p-0.5 group hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300">
@@ -65,20 +62,9 @@ const Navbar = () => {
                   </Link>
                 </div>
               </>
-            )}
-
-            {user && !isAdmin && (
+            ) : (
               <>
                 <NavLink to="/orders">My Orders</NavLink>
-                <LogoutButton />
-              </>
-            )}
-
-            {isAdmin && (
-              <>
-                <NavLink to="/admin">Dashboard</NavLink>
-                <NavLink to="/admin/add">Add Product</NavLink>
-                <NavLink to="/admin/orders">Orders</NavLink>
                 <LogoutButton />
               </>
             )}
@@ -126,16 +112,14 @@ const Navbar = () => {
               Home
             </Link>
 
-            {!isAdmin && (
-              <Link
-                to="/cart"
-                className="block px-3 py-2 text-white hover:bg-gray-700 rounded-md transition-colors duration-200"
-              >
-                Cart
-              </Link>
-            )}
+            <Link
+              to="/cart"
+              className="block px-3 py-2 text-white hover:bg-gray-700 rounded-md transition-colors duration-200"
+            >
+              Cart
+            </Link>
 
-            {!user && (
+            {!user ? (
               <>
                 <Link
                   to="/login"
@@ -150,44 +134,13 @@ const Navbar = () => {
                   Sign Up
                 </Link>
               </>
-            )}
-
-            {user && !isAdmin && (
+            ) : (
               <>
                 <Link
                   to="/orders"
                   className="block px-3 py-2 text-white hover:bg-gray-700 rounded-md transition-colors duration-200"
                 >
                   My Orders
-                </Link>
-                <button
-                  onClick={logout}
-                  className="block w-full text-left px-3 py-2 text-white hover:bg-gray-700 rounded-md transition-colors duration-200"
-                >
-                  Logout
-                </button>
-              </>
-            )}
-
-            {isAdmin && (
-              <>
-                <Link
-                  to="/admin"
-                  className="block px-3 py-2 text-white hover:bg-gray-700 rounded-md transition-colors duration-200"
-                >
-                  Dashboard
-                </Link>
-                <Link
-                  to="/admin/add"
-                  className="block px-3 py-2 text-white hover:bg-gray-700 rounded-md transition-colors duration-200"
-                >
-                  Add Product
-                </Link>
-                <Link
-                  to="/admin/orders"
-                  className="block px-3 py-2 text-white hover:bg-gray-700 rounded-md transition-colors duration-200"
-                >
-                  Orders
                 </Link>
                 <button
                   onClick={logout}
