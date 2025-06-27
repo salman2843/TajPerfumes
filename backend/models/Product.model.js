@@ -26,7 +26,7 @@ const productSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      enum: ["men", "women", "unisex"], // feel free to expand
+      enum: ["men", "women", "unisex"],
       lowercase: true,
     },
     quantity: {
@@ -35,7 +35,7 @@ const productSchema = new mongoose.Schema(
     },
     imageUrl: {
       type: String,
-      required: true, // assuming you're uploading to Cloudinary or similar
+      required: true,
     },
     ratings: {
       type: Number,
@@ -55,6 +55,33 @@ const productSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
+    },
+
+    // 🆕 Optional Extra Details (for product display page)
+    itemForm: {
+      type: String, // e.g., "Liquid", "Spray"
+    },
+    itemVolume: {
+      type: String, // e.g., "120 Millilitres"
+    },
+    modelNumber: {
+      type: String,
+    },
+    itemWeight: {
+      type: String, // or you could use Number + unit separately
+    },
+    netQuantity: {
+      type: String, // e.g., "1 N", "3 bottles"
+    },
+    numberOfItems: {
+      type: Number,
+      default: 1,
+    },
+    scent: {
+      type: String, // e.g., "Wood", "Citrus"
+    },
+    specialFeature: {
+      type: String, // e.g., "Long Lasting"
     },
   },
   {
