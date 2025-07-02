@@ -1,4 +1,6 @@
 import express from "express";
+import upload from "../middleware/uploadMiddleware.js";
+import { uploadProductImage } from "../controllers/ProductController.js";
 import {
   getAllProducts,
   getProductById,
@@ -18,5 +20,8 @@ router.get("/:id", getProductById);
 router.post("/", protect, adminOnly, createProduct);
 router.put("/:id", protect, adminOnly, updateProduct);
 router.delete("/:id", protect, adminOnly, deleteProduct);
+
+// this route is for uploading product images
+router.post("/upload", upload.single("image"), uploadProductImage);
 
 export default router;

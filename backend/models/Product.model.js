@@ -4,38 +4,40 @@ const productSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
+      required: [true, "Product name is required"],
       trim: true,
       maxLength: 100,
     },
     brand: {
       type: String,
-      required: true,
+      required: [true, "Brand is required"],
       trim: true,
     },
     description: {
       type: String,
-      required: true,
+      required: [true, "Description is required"],
       maxLength: 1000,
     },
     price: {
       type: Number,
-      required: true,
-      min: 0,
+      required: [true, "Price is required"],
+      min: [0, "Price can't be negative"],
     },
     category: {
       type: String,
-      required: true,
+      required: [true, "Category is required"],
       enum: ["men", "women", "unisex"],
       lowercase: true,
     },
     quantity: {
       type: Number,
+      required: true,
       default: 0,
+      min: [0, "Quantity can't be negative"],
     },
     imageUrl: {
       type: String,
-      required: true,
+      required: [true, "Image URL is required"],
     },
     ratings: {
       type: Number,
@@ -57,31 +59,26 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
 
-    // 🆕 Optional Extra Details (for product display page)
-    itemForm: {
-      type: String, // e.g., "Liquid", "Spray"
-    },
-    itemVolume: {
-      type: String, // e.g., "120 Millilitres"
-    },
-    modelNumber: {
-      type: String,
-    },
-    itemWeight: {
-      type: String, // or you could use Number + unit separately
-    },
-    netQuantity: {
-      type: String, // e.g., "1 N", "3 bottles"
-    },
+    // 🧼 Optional Extras (nice-to-have for perfume display)
+    itemForm: String, // e.g., "Liquid", "Spray"
+    itemVolume: String, // e.g., "120 ml"
+    modelNumber: String, // SKU or internal code
+    itemWeight: String, // e.g., "400g"
+    netQuantity: String, // e.g., "1N", "3 bottles"
     numberOfItems: {
       type: Number,
       default: 1,
     },
-    scent: {
-      type: String, // e.g., "Wood", "Citrus"
-    },
-    specialFeature: {
-      type: String, // e.g., "Long Lasting"
+    scent: String, // e.g., "Woody", "Fresh", etc.
+    specialFeature: String, // e.g., "Long Lasting", "Premium"
+
+    // 🆕 Extra Marketing & SEO fields (optional but useful)
+    keywords: [String], // e.g., ["perfume", "long lasting", "citrus"]
+    tags: [String], // for filtering/sorting
+    stockStatus: {
+      type: String,
+      enum: ["in stock", "out of stock", "coming soon"],
+      default: "in stock",
     },
   },
   {

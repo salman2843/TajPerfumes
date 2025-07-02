@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema(
       maxLength: 50,
     },
     username: {
+      required: [true, "Username is required"],
       type: String,
       trim: true,
       lowercase: true,
@@ -28,6 +29,7 @@ const userSchema = new mongoose.Schema(
       match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     },
     password: {
+      required: [true, "Password is required"],
       type: String,
       minLength: 6,
       select: false, // hide password by default

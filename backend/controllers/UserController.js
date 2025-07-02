@@ -14,9 +14,40 @@ export const registerUser = async (req, res) => {
   try {
     const { name, email, username, password } = req.body;
 
-    const userExists = await User.findOne({ email });
-    if (userExists)
-      return res.status(400).json({ message: "Email already registered" });
+    // ✅ Basic field validation
+    if (!name || !email || !username || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    // Username format validation (matches your schema)
+    const usernameRegex = /^[a-zA-Z0-9_]+$/;
+    if (!usernameRegex.test(username)) {
+      return res
+        .status(400)
+        .json({
+          message:
+            "Username can only contain letters, numbers, and underscores",
+        });
+    }
+
+    if (username.length < 3 || username.length > 20) {
+      return res
+        .status(400)
+        .json({ message: "Username must be 3-20 characters long" });
+    }
+
+    if (password.length < 6) {
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 6 characters" });
+    }
+
+    const userExists = await User.findOne({ $or: [{ email }, { username }] });
+
+    if (userExists) {
+      const field = userExists.email === email ? "Email" : "Username";
+      return res.status(400).json({ message: `${field} already registered` });
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
