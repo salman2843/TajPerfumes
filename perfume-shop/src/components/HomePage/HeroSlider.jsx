@@ -1,10 +1,18 @@
-import Slider from 'react-slick';
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const slides = [
-  { img: '/images/banner1.jpg', title: 'Luxury Scents', subtitle: 'Up to 50% Off' },
-  { img: '/images/banner2.jpg', title: 'Fresh Arrivals', subtitle: 'Just Dropped Today' },
+  {
+    img: "/images/banner1.avif",
+    // title: "Luxury Scents",
+    // subtitle: "Up to 50% Off",
+  },
+  {
+    img: "/images/banner2.jpg",
+    // title: "Fresh Arrivals",
+    // subtitle: "Just Dropped Today",
+  },
 ];
 
 const HeroSlider = () => {

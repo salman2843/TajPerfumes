@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import HeroSlider from "../components/HomePage/HeroSlider";
-import ProductCard from "../components/HomePage/ProductCard";
+import HeroSlider from "../components/homePage/HeroSlider";
+
+import ProductCard from "../components/homepage/ProductCard";
+
 import API from "../api/axios.js";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedProduct, setSelectedProduct] = useState(null); // 👈 for modal
 
   useEffect(() => {
     const fetchPerfumes = async () => {
@@ -24,12 +27,10 @@ const Home = () => {
 
   return (
     <div className="w-full">
-      {/* Hero */}
       <section className="mb-10">
         <HeroSlider />
       </section>
 
-      {/* Products */}
       <section className="px-4 md:px-12">
         <h2 className="text-2xl font-semibold mb-4">Latest Perfumes</h2>
 
@@ -43,6 +44,14 @@ const Home = () => {
           </div>
         )}
       </section>
+
+      {/* Modal Detail View */}
+      {selectedProduct && (
+        <ProductDetailModal
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+        />
+      )}
     </div>
   );
 };

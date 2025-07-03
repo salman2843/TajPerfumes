@@ -10,3 +10,7 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Prompt
+
+I want to create the perfume website frontend and i am using the react.js(vite). I have already done home page, login/signup page and now i am going to start with cart, product details, orders page and i am fetching this data from backend

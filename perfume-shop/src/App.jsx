@@ -1,16 +1,15 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components//navbar/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Admin from "./pages/Admin";
-// import ProductDetail from "./pages/ProductDetail";
-import AdminRoute from "./routes/AdminRoute";
-import AdminNavbar from "./components/AdminNavbar";
-// import Cart from "./pages/Cart";
-// import Orders from "./pages/Orders";
-// import AddProduct from "./pages/AddProduct";
-// import AdminOrders from "./pages/AdminOrders";
+import Admin from "./pages/admin/Admin";
+import Cart from "./pages/Cart";
+
+import AdminNavbar from "./components/navbar/AdminNavbar";
+import AddProduct from "./pages/admin/AddProduct";
+import AdminOrders from "./pages/admin/AdminOrders";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 function AppRoutes() {
   const location = useLocation();
@@ -27,37 +26,16 @@ function AppRoutes() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
-        {/* <Route path="/product/:id" element={<ProductDetail />} /> */}
+
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        {/* <Route path="/cart" element={<Cart />} /> */}
-        {/* <Route path="/orders" element={<Orders />} /> */}
+        <Route path="/cart" element={<Cart />} />
 
         {/* Protected Admin Routes */}
-        <Route
-          path="/admin"
-          element={
-            <AdminRoute>
-              <Admin />
-            </AdminRoute>
-          }
-        />
-        {/* <Route
-          path="/admin/add"
-          element={
-            <AdminRoute>
-              <AddProduct />
-            </AdminRoute>
-          }
-        />
-        <Route
-          path="/admin/orders"
-          element={
-            <AdminRoute>
-              <AdminOrders />
-            </AdminRoute>
-          }
-        /> */}
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/add" element={<AddProduct />} />
+        <Route path="/admin/orders" element={<AdminOrders />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Routes>
     </>
   );

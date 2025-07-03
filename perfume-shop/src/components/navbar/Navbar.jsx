@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
-
+import { House, ShoppingCart } from "lucide-react";
 const Navbar = () => {
   const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,11 +44,20 @@ const Navbar = () => {
               <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-15 group-hover:opacity-25 transition-opacity duration-300"></div>
             </span>
           </Link>
-
-          {/* Desktop Navigation */}
+          /* Desktop Navigation */
           <div className="hidden md:flex items-center space-x-6">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/cart">Cart</NavLink>
+            <NavLink to="/">
+              <span className="flex items-center space-x-1">
+                <House />
+                <span>Home</span>
+              </span>
+            </NavLink>
+            <NavLink to="/cart">
+              <span className="flex items-center space-x-1">
+                <ShoppingCart />
+                <span>Cart</span>
+              </span>
+            </NavLink>
 
             {!user ? (
               <>
@@ -69,7 +78,6 @@ const Navbar = () => {
               </>
             )}
           </div>
-
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
