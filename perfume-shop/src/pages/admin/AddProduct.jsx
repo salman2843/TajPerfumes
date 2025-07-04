@@ -1,7 +1,8 @@
 import { useState } from "react";
 import API from "../../api/axios";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -71,7 +72,8 @@ const AddProduct = () => {
         const imageForm = new FormData();
         imageForm.append("image", imageFile);
         const res = await API.post("/products/upload", imageForm);
-        imageUrl = res.data.imageUrl;
+        imageUrl = res.data.ImageUrl;
+        console.log("Image uploaded:", imageUrl);
       } else {
         toast.error("Please upload a product image");
         setLoading(false);
@@ -141,7 +143,7 @@ const AddProduct = () => {
             name="name"
             value={form.name}
             onChange={handleChange}
-            className="input"
+            className="input border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
           />
         </div>
 
@@ -152,7 +154,7 @@ const AddProduct = () => {
             name="brand"
             value={form.brand}
             onChange={handleChange}
-            className="input"
+            className="input border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
           />
         </div>
 
@@ -162,7 +164,7 @@ const AddProduct = () => {
             name="description"
             value={form.description}
             onChange={handleChange}
-            className="input"
+            className="input border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
             rows={3}
           />
         </div>
@@ -174,7 +176,7 @@ const AddProduct = () => {
             name="price"
             value={form.price}
             onChange={handleChange}
-            className="input"
+            className="input border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
           />
         </div>
 
@@ -184,7 +186,7 @@ const AddProduct = () => {
             name="category"
             value={form.category}
             onChange={handleChange}
-            className="input"
+            className="input border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
           >
             <option value="men">Men</option>
             <option value="women">Women</option>
@@ -199,7 +201,7 @@ const AddProduct = () => {
             name="quantity"
             value={form.quantity}
             onChange={handleChange}
-            className="input"
+            className="input border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
           />
         </div>
 
@@ -209,7 +211,7 @@ const AddProduct = () => {
             name="itemForm"
             value={form.itemForm}
             onChange={handleChange}
-            className="input"
+            className="input border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
           >
             <option value="Spray">Spray</option>
             <option value="Liquid">Liquid</option>
@@ -225,7 +227,7 @@ const AddProduct = () => {
               name="itemVolumeValue"
               value={form.itemVolumeValue}
               onChange={handleChange}
-              className="input"
+              className="input border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
             />
           </div>
           <div>
@@ -234,7 +236,7 @@ const AddProduct = () => {
               name="itemVolumeUnit"
               value={form.itemVolumeUnit}
               onChange={handleChange}
-              className="input"
+              className="input border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
             >
               <option value="ml">ml</option>
               <option value="l">l</option>
@@ -249,7 +251,7 @@ const AddProduct = () => {
             name="itemWeight"
             value={form.itemWeight}
             onChange={handleChange}
-            className="input"
+            className="input border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
           />
         </div>
 
@@ -260,7 +262,7 @@ const AddProduct = () => {
             name="netQuantity"
             value={form.netQuantity}
             onChange={handleChange}
-            className="input"
+            className="input border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
           />
         </div>
 
@@ -271,7 +273,7 @@ const AddProduct = () => {
             name="numberOfItems"
             value={form.numberOfItems}
             onChange={handleChange}
-            className="input"
+            className="input border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
           />
         </div>
 
@@ -282,7 +284,7 @@ const AddProduct = () => {
             name="scent"
             value={form.scent}
             onChange={handleChange}
-            className="input"
+            className="input border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
           />
         </div>
 
@@ -293,7 +295,7 @@ const AddProduct = () => {
             name="specialFeature"
             value={form.specialFeature}
             onChange={handleChange}
-            className="input"
+            className="input border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded"
           />
         </div>
 
@@ -317,6 +319,17 @@ const AddProduct = () => {
           </button>
         </div>
       </form>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };
