@@ -11,6 +11,7 @@ const AdminNavbar = () => {
         <Link to="/admin/dashboard">Dashboard</Link>
         <Link to="/admin/add">Add Product</Link>
         <Link to="/admin/orders">Orders</Link>
+        <Link to="/">Home page</Link>
         <button
           onClick={logout}
           className="bg-white text-black px-2 py-1 rounded"
